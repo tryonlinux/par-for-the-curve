@@ -570,3 +570,9 @@ dialog[open] { animation: pop 0.2s ease-out; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
+
+/* ---------- 404 ---------- */
+.notfound { text-align: center; padding: 56px 20px; }
+.notfound h1 { font-size: 1.9rem; margin: 0 0 6px; letter-spacing: -0.01em; }
+.notfound p { margin: 0 0 20px; }
+.notfound .btn { display: inline-block; text-decoration: none; }

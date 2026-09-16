@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Guess that Graph — a daily curve-fitting golf puzzle">
+  <defs>
+    <pattern id="paper" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#1d2433" stroke-opacity=".05" stroke-width="2"/>
+    </pattern>
+    <style>
+      .f { font-family: "SF Pro Rounded", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+      .m { font-family: "STIX Two Math", Cambria, "Times New Roman", Times, serif; font-style: italic; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="630" fill="#f4f1e8"/>
+  <rect width="1200" height="630" fill="url(#paper)"/>
+
+  <!-- title block -->
+  <g class="f">
+    <text x="78" y="196" font-size="78" font-weight="800" fill="#1d2433">Guess that</text>
+    <text x="78" y="286" font-size="78" font-weight="800" fill="#1f7a4d">Graph</text>
+    <text x="78" y="350" font-size="31" font-weight="600" fill="#5c6675">Read the curve. Guess the equation.</text>
+    <text x="78" y="392" font-size="31" font-weight="600" fill="#5c6675">Fewest strokes wins.</text>
+
+    <g font-size="24" font-weight="700">
+      <rect x="78" y="432" width="150" height="50" rx="25" fill="#dcefe3"/>
+      <text x="153" y="464" fill="#1f7a4d" text-anchor="middle">18 HOLES</text>
+      <rect x="242" y="432" width="132" height="50" rx="25" fill="#dcefe3"/>
+      <text x="308" y="464" fill="#1f7a4d" text-anchor="middle">PAR 72</text>
+      <rect x="388" y="432" width="196" height="50" rx="25" fill="#dcefe3"/>
+      <text x="486" y="464" fill="#1f7a4d" text-anchor="middle">DAILY COURSE</text>
+    </g>
+
+    <text x="78" y="556" font-size="26" font-weight="600" fill="#8a929e">graph.tryonlinux.com</text>
+  </g>
+
+  <!-- plot card -->
+  <g transform="translate(646 78)">
+    <rect width="476" height="474" rx="26" fill="#fffdf7" stroke="#e2dccb" stroke-width="2"/>
+    <g stroke="#ece6d5" stroke-width="2">
+      <path d="M119 24V450M357 24V450M24 119H452M24 357H452"/>
+    </g>
+    <g stroke="#9aa2ae" stroke-width="3" stroke-linecap="round">
+      <path d="M24 238H452M238 24V450"/>
+    </g>
+
+    <!-- target curve -->
+    <path d="M44 430C140 430 150 96 432 84" fill="none" stroke="#1f8a4c" stroke-width="11" stroke-linecap="round"/>
+    <!-- player's guess, slightly off -->
+    <path d="M44 384C160 384 176 150 432 138" fill="none" stroke="#e8590c" stroke-width="7" stroke-linecap="round" stroke-dasharray="16 15"/>
+
+    <!-- flag in the hole -->
+    <path d="M404 92V186" stroke="#1d2433" stroke-width="7" stroke-linecap="round"/>
+    <path d="M404 92l46 17-46 17z" fill="#e8590c"/>
+    <ellipse cx="404" cy="190" rx="21" ry="8" fill="#1d2433" opacity=".18"/>
+
+    <!-- equation strip -->
+    <g transform="translate(0 0)">
+      <rect x="34" y="34" width="248" height="52" rx="16" fill="#f3efe3" stroke="#e2dccb" stroke-width="2"/>
+      <text class="m" x="56" y="70" font-size="34" fill="#1d2433">y = </text>
+      <rect x="112" y="44" width="46" height="34" rx="9" fill="#fffdf7" stroke="#b9c0ca" stroke-width="2"/>
+      <text class="m" x="168" y="70" font-size="34" fill="#1d2433">x² + </text>
+      <rect x="228" y="44" width="46" height="34" rx="9" fill="#fffdf7" stroke="#b9c0ca" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Guess that Graph">
+  <rect width="128" height="128" rx="28" fill="#fffdf7"/>
+  <g stroke="#e4dfd0" stroke-width="3" stroke-linecap="round">
+    <path d="M34 14V114M94 14V114M14 34H114M14 94H114"/>
+  </g>
+  <g stroke="#9aa2ae" stroke-width="4" stroke-linecap="round">
+    <path d="M14 64H114M64 14V114"/>
+  </g>
+  <path d="M16 106C42 106 50 40 96 34" fill="none" stroke="#1f8a4c" stroke-width="10" stroke-linecap="round"/>
+  <path d="M96 30V92" stroke="#1d2433" stroke-width="8" stroke-linecap="round"/>
+  <path d="M96 30l28 12-28 12z" fill="#e8590c"/>
+</svg>

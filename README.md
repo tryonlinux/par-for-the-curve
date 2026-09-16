@@ -34,11 +34,40 @@ Scores are kept per browser in `localStorage`. There is no server and no account
 
 ```
 public/
-  index.html    markup and dialogs
-  game.js       holes, generation, scoring, canvas, persistence
-  style.css     theming (light/dark), layout, scorecard
-wrangler.jsonc  Cloudflare Worker static-asset config
+  index.html          markup, dialogs, meta/OG tags, JSON-LD
+  404.html            "out of bounds" page
+  game.js             holes, generation, scoring, canvas, persistence
+  style.css           theming (light/dark), layout, scorecard
+  _headers            CSP and other security headers, cache policy
+  robots.txt          crawl policy, points at the sitemap
+  sitemap.xml         one URL — the game is a single page
+  site.webmanifest    installable/standalone metadata
+  favicon.svg         source icon; apple-touch-icon and icon-192/512 render from it
+  og-image.svg/.png   social card source and the 1200×630 PNG that ships
+wrangler.jsonc        Cloudflare Worker static-asset config
 ```
+
+### Headers and social
+
+`public/_headers` is applied by Cloudflare at the edge. The CSP is `'self'`-only with
+no `unsafe-inline` anywhere, which the code is written to respect: no inline `<script>`
+or `<style>`, no inline event handlers, and no `style="..."` attributes. Confetti and
+canvas styling go through CSSOM (`el.style.setProperty`), which CSP permits. The single
+inline `<script type="application/ld+json">` is a data block, not executable script, so
+it is not subject to `script-src`.
+
+Social previews use `og-image.png`. The `.svg` beside it is the source — keep them in
+sync, but **reference the PNG**, since Facebook, X/Twitter, Slack and iMessage do not
+render SVG cards. To re-render after editing the SVG:
+
+```sh
+printf '<body style="margin:0">' > /tmp/og.html && cat public/og-image.svg >> /tmp/og.html
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --disable-gpu \
+  --screenshot=public/og-image.png --window-size=1200,630 --hide-scrollbars file:///tmp/og.html
+```
+
+Unknown paths return `404.html` rather than the app, so crawlers get real 404s instead
+of soft ones.
 
 ## Running it
 

@@ -1,0 +1,17 @@
+{
+  "name": "Guess that Graph",
+  "short_name": "Graph Golf",
+  "description": "A golf-style math puzzle: read the curve, guess the equation, fewest strokes wins.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f1e8",
+  "theme_color": "#f4f1e8",
+  "categories": ["games", "education"],
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
