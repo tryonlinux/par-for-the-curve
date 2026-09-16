@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Guess that Graph</title>
+  <meta name="description" content="A golf-style math puzzle. Find the coefficients and exponents that draw the mystery curve in as few strokes as possible.">
+  <meta name="theme-color" content="#f4f1e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f141a" media="(prefers-color-scheme: dark)">
+  <meta property="og:title" content="Guess that Graph">
+  <meta property="og:description" content="18 holes of curve fitting. Fewest strokes wins.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛳</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Guess that Graph home">
+      <span class="brand-mark" aria-hidden="true">⛳</span>
+      <span>Guess that <b>Graph</b></span>
+    </a>
+    <nav class="topnav">
+      <button class="btn ghost" data-open="help">How to play</button>
+      <button class="btn ghost" data-open="board">Leaderboard</button>
+      <button class="btn ghost" data-open="course">New course</button>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <section class="hud">
+      <div class="hud-hole">
+        <span class="label">Hole</span>
+        <strong id="hudHole">1</strong><span class="muted">/18</span>
+      </div>
+      <div class="hud-name">
+        <span id="hudName">The Straightaway</span>
+        <span class="muted small" id="hudCourse"></span>
+      </div>
+      <div class="hud-stat"><span class="label">Par</span><strong id="hudPar">3</strong></div>
+      <div class="hud-stat"><span class="label">Strokes</span><strong id="hudStrokes">0</strong></div>
+      <div class="hud-stat"><span class="label">Round</span><strong id="hudRound">E</strong></div>
+    </section>
+
+    <section class="card plot-card">
+      <div class="plot" id="plot">
+        <canvas id="canvas" aria-label="Graph of the mystery function and your guesses" role="img"></canvas>
+        <div class="legend" aria-hidden="true">
+          <span><i class="sw sw-target"></i>Target</span>
+          <span><i class="sw sw-guess"></i>Your shot</span>
+          <span><i class="sw sw-ghost"></i>Earlier</span>
+        </div>
+        <div class="pan-hint" id="panHint" hidden>Drag to pan · scroll to zoom</div>
+      </div>
+      <div class="tools">
+        <button class="tool" id="toggleMarks" aria-pressed="false">
+          <span class="tool-ico" aria-hidden="true">#</span> Axis marks <span class="cost" id="marksCost">+1</span>
+        </button>
+        <div class="tool-group" role="group" aria-label="Window size">
+          <span class="tool-label">Window <span class="cost" id="winCost">+1</span></span>
+          <button class="tool icon" id="zoomOut" aria-label="Zoom out">−</button>
+          <button class="tool icon" id="zoomIn" aria-label="Zoom in">+</button>
+          <button class="tool icon" id="zoomReset" aria-label="Reset window">⟲</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card eq-card">
+      <form id="guessForm" autocomplete="off" novalidate>
+        <div class="equation" id="equation"></div>
+        <p class="hints" id="hints"></p>
+        <div class="actions">
+          <button type="button" class="btn ghost" id="signBtn" title="Flip the sign of the selected box">± Sign</button>
+          <button type="button" class="btn ghost" id="pickUpBtn" title="Give up this hole and see the answer">Pick up</button>
+          <button type="submit" class="btn primary" id="shotBtn">Take shot <kbd>↵</kbd></button>
+        </div>
+        <p class="shot-msg" id="shotMsg" aria-live="polite"></p>
+      </form>
+
+      <div class="result" id="result" hidden>
+        <div>
+          <div class="result-term" id="resTerm"></div>
+          <div class="result-sub" id="resSub"></div>
+          <div class="result-eq" id="resEq"></div>
+        </div>
+        <button class="btn primary" id="nextBtn">Next hole →</button>
+      </div>
+
+      <div class="history" id="history"></div>
+    </section>
+
+    <section class="card score-card">
+      <div class="score-head">
+        <h2>Scorecard</h2>
+        <span class="muted" id="scoreTotal"></span>
+      </div>
+      <div id="scorecard"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Guess that Graph</span> · <span id="footCourse"></span>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- How to play -->
+  <dialog id="dlg-help">
+    <div class="dlg">
+      <header><h2>How to play</h2><button class="x" data-close aria-label="Close">×</button></header>
+      <ol class="steps">
+        <li>The <b class="c-target">green curve</b> is the mystery function. Its equation is shown below the graph with the numbers blanked out.</li>
+        <li>Fill in the boxes and take a shot. Your guess draws in <b class="c-guess">orange</b> on the same graph so you can compare.</li>
+        <li>The hint line lists every value each box can take. A value that isn't on the list is rejected without costing you a stroke.</li>
+        <li>Every shot costs <b>1 stroke</b>. Match the curve exactly to sink the hole and move on. Each hole gets harder.</li>
+        <li>Assists cost strokes too: <b>Axis marks +1</b> and <b>Window +1</b>, charged once per hole.</li>
+        <li>Stuck? <b>Pick up</b> to see the answer and take par + 5.</li>
+        <li>18 holes, par 72. Lowest score wins, just like golf.</li>
+      </ol>
+      <p class="fine">Tips: the hint line lists every possible value. Fractions like <code>1/2</code> work. On a phone, use <b>± Sign</b> to make a number negative.</p>
+      <div class="dlg-actions"><button class="btn primary" data-close>Tee off</button></div>
+    </div>
+  </dialog>
+
+  <!-- Leaderboard -->
+  <dialog id="dlg-board">
+    <div class="dlg">
+      <header><h2>Leaderboard</h2><button class="x" data-close aria-label="Close">×</button></header>
+      <div class="tabs" role="tablist">
+        <button role="tab" data-tab="course" aria-selected="true">This course</button>
+        <button role="tab" data-tab="all" aria-selected="false">All rounds</button>
+      </div>
+      <div id="boardBody"></div>
+      <p class="fine">Scores are saved in this browser.</p>
+    </div>
+  </dialog>
+
+  <!-- Course picker -->
+  <dialog id="dlg-course">
+    <div class="dlg">
+      <header><h2>Choose a course</h2><button class="x" data-close aria-label="Close">×</button></header>
+      <div class="option">
+        <div>
+          <strong>Daily course</strong>
+          <div class="muted small" id="dailyStatus">Same 18 holes for everyone today.</div>
+        </div>
+        <button class="btn primary" id="playDaily">Play daily</button>
+      </div>
+      <div class="option">
+        <div>
+          <strong>Random course</strong>
+          <div class="muted small">Fresh holes with a code you can share.</div>
+        </div>
+        <button class="btn" id="playRandom">Start random</button>
+      </div>
+      <form class="option" id="codeForm">
+        <label for="codeInput"><strong>Course code</strong>
+          <span class="muted small">Play a friend's course.</span></label>
+        <div class="inline">
+          <input id="codeInput" maxlength="8" placeholder="e.g. K3F9QZ" autocapitalize="characters" spellcheck="false">
+          <button class="btn">Go</button>
+        </div>
+      </form>
+      <div class="option subtle">
+        <div>
+          <strong>Current course</strong>
+          <div class="muted small" id="currentCourseInfo"></div>
+        </div>
+        <div class="inline">
+          <button class="btn ghost" id="copyLink">Copy link</button>
+          <button class="btn ghost danger" id="restartCourse">Restart</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Round complete -->
+  <dialog id="dlg-finish">
+    <div class="dlg">
+      <header><h2>Round complete</h2><button class="x" data-close aria-label="Close">×</button></header>
+      <div class="big-score">
+        <strong id="finStrokes">72</strong>
+        <span class="topar" id="finToPar">E</span>
+      </div>
+      <p class="center muted" id="finLine"></p>
+      <pre class="emoji-card" id="finEmoji"></pre>
+      <form id="lbForm" class="lb-form">
+        <label for="lbName">Name for the leaderboard</label>
+        <div class="inline">
+          <input id="lbName" maxlength="20" required placeholder="Your name">
+          <button class="btn primary">Save score</button>
+        </div>
+      </form>
+      <p class="center saved" id="lbSaved" hidden>Score saved to the leaderboard.</p>
+      <div class="dlg-actions">
+        <button class="btn" id="shareBtn">Share result</button>
+        <button class="btn ghost" data-open="board">Leaderboard</button>
+        <button class="btn ghost" data-open="course">Another course</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="game.js"></script>
+</body>
+</html>
