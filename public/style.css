@@ -129,6 +129,7 @@ code {
   font-size: 18px;
 }
 .topnav { display: flex; gap: 4px; flex-wrap: wrap; }
+.lbl-short { display: none; }
 
 /* ---------- buttons ---------- */
 .btn {
@@ -562,20 +563,72 @@ dialog[open] { animation: pop 0.2s ease-out; }
 
 /* ---------- small screens ---------- */
 @media (max-width: 640px) {
-  .topnav .btn { padding-inline: 0.7em; font-size: 0.85rem; }
-  .hud { grid-template-columns: auto 1fr repeat(3, auto); gap: 6px 12px; }
-  .hud strong { font-size: 1.3rem; }
-  .hud-name > span:first-child { font-size: 0.95rem; }
-  .hud-stat { min-width: 40px; }
-  .plot { height: clamp(240px, 46vh, 420px); }
-  .legend { font-size: 0.7rem; gap: 8px; }
+  /* Keep the header, HUD and tools to one row each so the curve and the
+     equation boxes can share a phone screen without scrolling. */
+  .topbar { padding-block: 10px 2px; gap: 8px; flex-wrap: nowrap; }
+  .brand { font-size: 1.02rem; gap: 7px; flex: none; }
+  .brand > span:last-child { white-space: nowrap; }
+  .brand-mark { width: 28px; height: 28px; font-size: 15px; border-radius: 9px; }
+  .topnav { gap: 0; }
+  .topnav .btn { padding-inline: 0.5em; font-size: 0.78rem; }
+
+  .hud { grid-template-columns: auto minmax(0, 1fr) repeat(3, auto); gap: 2px 10px; }
+  .hud .label { font-size: 0.62rem; letter-spacing: 0.06em; }
+  .hud strong { font-size: 1.15rem; }
+  .hud-name > span:first-child,
+  .hud-name > span:last-child {
+    font-size: 0.88rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hud-name > span:last-child { font-size: 0.72rem; }
+  .hud-stat { min-width: 32px; }
+
+  .plot { height: clamp(220px, 40vh, 380px); }
+  .legend { font-size: 0.7rem; gap: 8px; padding: 3px 8px; }
+
+  .tools { gap: 5px; padding: 8px 10px; flex-wrap: nowrap; }
+  .tool { padding: 0.35em 0.5em; font-size: 0.78rem; gap: 4px; white-space: nowrap; }
+  .tool.icon { width: 28px; font-size: 1rem; padding-inline: 0; }
+  .tool-group { gap: 3px; }
+  .tool-label { font-size: 0.78rem; margin-right: 0; white-space: nowrap; }
+  .tool-ico { display: none; }
+  .cost { padding-inline: 0.4em; }
+
+  .eq-card { padding: 14px 12px 12px; }
+  .equation { line-height: 2; }
+  .hints { margin: 2px 0 10px; gap: 2px 10px; font-size: 0.8rem; }
+  .actions { gap: 6px; }
+  .actions .btn { padding: 0.5em 0.85em; }
+  .shot-msg { margin-top: 8px; font-size: 0.85rem; }
+
   .option > .btn { width: 100%; }
 }
-@media (max-width: 420px) {
-  .hud { grid-template-columns: repeat(3, 1fr); }
-  .hud-hole { grid-column: 1; grid-row: 1; }
-  .hud-name { grid-column: 2 / 4; grid-row: 1; }
-  .hud-stat { grid-row: 2; }
+
+/* Tiny phones (iPhone SE and similar): let the tool row wrap rather than clip. */
+@media (max-width: 345px) {
+  .tools { flex-wrap: wrap; }
+}
+
+/* Narrow phones: shorter nav labels keep the header on one line. */
+@media (max-width: 470px) {
+  .lbl-full { display: none; }
+  .lbl-short { display: inline; }
+}
+
+/* Short viewports: give the plot less room so the controls stay reachable. */
+@media (max-height: 740px) and (max-width: 640px) {
+  .plot { height: clamp(180px, 32vh, 300px); }
+  .wrap { gap: 10px; }
+}
+
+/* Landscape phones: put the graph beside the equation instead of above it. */
+@media (max-height: 540px) and (orientation: landscape) {
+  .wrap { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: start; }
+  .hud, .score-card { grid-column: 1 / -1; }
+  .plot { height: clamp(170px, 58vh, 320px); }
+  .topbar { padding-block: 8px 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
