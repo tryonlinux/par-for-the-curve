@@ -23,7 +23,9 @@ Cloudflare Worker.
 Every hole opens with its curve automatically framed, which costs nothing; the window
 assist is only charged when *you* change the view.
 
-Scores are kept per browser in `localStorage`. There is no server and no account.
+Finished rounds are kept per browser in `localStorage` and shown under **Your rounds**.
+There is no server and no account, so scores never leave the device — a shared
+course code gives two people the same holes, but not a shared scoreboard.
 
 ### Courses
 

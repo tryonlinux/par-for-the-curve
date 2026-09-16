@@ -942,7 +942,7 @@
   }
 
   // ---------------------------------------------------------------------------
-  // Dialogs, leaderboard, sharing
+  // Dialogs, saved rounds, sharing
   // ---------------------------------------------------------------------------
   const dialogs = {
     help: $('#dlg-help'),
@@ -1023,7 +1023,7 @@
     save();
     $('#lbForm').hidden = true;
     $('#lbSaved').hidden = false;
-    toast('Score saved.');
+    toast('Round saved.');
   }
 
   function renderBoard(tab) {
@@ -1033,7 +1033,7 @@
     rows.sort((a, b) => a.strokes - b.strokes || a.date.localeCompare(b.date));
     const body = $('#boardBody');
     if (!rows.length) {
-      body.innerHTML = `<p class="empty">${tab === 'course' ? 'No finished rounds on this course yet.' : 'No finished rounds yet. Play 18 holes to get on the board.'}</p>`;
+      body.innerHTML = `<p class="empty">${tab === 'course' ? 'No finished rounds on this course yet.' : 'No finished rounds yet. Play all 18 holes to record one.'}</p>`;
       return;
     }
     const trs = rows.slice(0, 50).map((r, i) => {

@@ -56,7 +56,7 @@
     </a>
     <nav class="topnav">
       <button class="btn ghost" data-open="help" aria-label="How to play"><span class="lbl-full">How to play</span><span class="lbl-short">Help</span></button>
-      <button class="btn ghost" data-open="board" aria-label="Leaderboard"><span class="lbl-full">Leaderboard</span><span class="lbl-short">Scores</span></button>
+      <button class="btn ghost" data-open="board" aria-label="Your rounds"><span class="lbl-full">Your rounds</span><span class="lbl-short">Rounds</span></button>
       <button class="btn ghost" data-open="course" aria-label="New course"><span class="lbl-full">New course</span><span class="lbl-short">Courses</span></button>
     </nav>
   </header>
@@ -160,16 +160,16 @@
     </div>
   </dialog>
 
-  <!-- Leaderboard -->
+  <!-- Your rounds -->
   <dialog id="dlg-board">
     <div class="dlg">
-      <header><h2>Leaderboard</h2><button class="x" data-close aria-label="Close">×</button></header>
+      <header><h2>Your rounds</h2><button class="x" data-close aria-label="Close">×</button></header>
       <div class="tabs" role="tablist">
         <button role="tab" data-tab="course" aria-selected="true">This course</button>
         <button role="tab" data-tab="all" aria-selected="false">All rounds</button>
       </div>
       <div id="boardBody"></div>
-      <p class="fine">Scores are saved in this browser.</p>
+      <p class="fine">Rounds are saved in this browser only — no one else can see them, and they do not carry to your other devices.</p>
     </div>
   </dialog>
 
@@ -223,16 +223,16 @@
       <p class="center muted" id="finLine"></p>
       <pre class="emoji-card" id="finEmoji"></pre>
       <form id="lbForm" class="lb-form">
-        <label for="lbName">Name for the leaderboard</label>
+        <label for="lbName">Name this round</label>
         <div class="inline">
           <input id="lbName" maxlength="20" required placeholder="Your name">
-          <button class="btn primary">Save score</button>
+          <button class="btn primary">Save round</button>
         </div>
       </form>
-      <p class="center saved" id="lbSaved" hidden>Score saved to the leaderboard.</p>
+      <p class="center saved" id="lbSaved" hidden>Round saved to this browser.</p>
       <div class="dlg-actions">
         <button class="btn" id="shareBtn">Share result</button>
-        <button class="btn ghost" data-open="board">Leaderboard</button>
+        <button class="btn ghost" data-open="board">Your rounds</button>
         <button class="btn ghost" data-open="course">Another course</button>
       </div>
     </div>
