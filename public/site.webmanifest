@@ -1,6 +1,6 @@
 {
-  "name": "Graph Golf",
-  "short_name": "Graph Golf",
+  "name": "Par for the Curve",
+  "short_name": "Par Curve",
   "description": "A golf-style math puzzle: read the curve, guess the equation, fewest strokes wins.",
   "start_url": "/",
   "scope": "/",

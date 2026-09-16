@@ -1,12 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "graph-golf",
+  "name": "par-for-the-curve",
   "compatibility_date": "2026-09-01",
   "assets": {
     "directory": "./public",
     "not_found_handling": "404-page"
   },
   "routes": [
-    { "pattern": "graph.tryonlinux.com", "custom_domain": true }
+    { "pattern": "par.tryonlinux.com", "custom_domain": true }
   ]
 }

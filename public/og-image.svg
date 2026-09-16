@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Graph Golf — a daily curve-fitting puzzle">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Par for the Curve — a daily curve-fitting golf puzzle">
   <defs>
     <pattern id="paper" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M40 0H0V40" fill="none" stroke="#1d2433" stroke-opacity=".05" stroke-width="2"/>
@@ -14,8 +14,8 @@
 
   <!-- title block -->
   <g class="f">
-    <text x="78" y="196" font-size="78" font-weight="800" fill="#1d2433">Graph</text>
-    <text x="78" y="286" font-size="78" font-weight="800" fill="#1f7a4d">Golf</text>
+    <text x="78" y="190" font-size="68" font-weight="800" fill="#1d2433">Par for the</text>
+    <text x="78" y="276" font-size="78" font-weight="800" fill="#1f7a4d">Curve</text>
     <text x="78" y="350" font-size="31" font-weight="600" fill="#5c6675">Read the curve. Guess the equation.</text>
     <text x="78" y="392" font-size="31" font-weight="600" fill="#5c6675">Fewest strokes wins.</text>
 
@@ -28,7 +28,7 @@
       <text x="486" y="464" fill="#1f7a4d" text-anchor="middle">DAILY COURSE</text>
     </g>
 
-    <text x="78" y="556" font-size="26" font-weight="600" fill="#8a929e">graph.tryonlinux.com</text>
+    <text x="78" y="556" font-size="26" font-weight="600" fill="#8a929e">par.tryonlinux.com</text>
   </g>
 
   <!-- plot card -->

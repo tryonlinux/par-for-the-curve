@@ -1,11 +1,11 @@
-# Graph Golf ⛳
+# Par for the Curve ⛳
 
 A golf-style math puzzle. A mystery curve is drawn at the top of the screen and its
 equation sits below it with the numbers blanked out. Fill in the coefficients and
 exponents, take a shot, and your guess is drawn over the target so you can compare.
 Match it exactly to sink the hole. Eighteen holes, par 72, fewest strokes wins.
 
-Live at **[graph.tryonlinux.com](https://graph.tryonlinux.com)**.
+Live at **[par.tryonlinux.com](https://par.tryonlinux.com)**.
 
 No build step, no dependencies, no framework — three static files served by a
 Cloudflare Worker.
@@ -83,7 +83,7 @@ npx wrangler dev          # or: python3 -m http.server -d public 8765
 npx wrangler deploy
 ```
 
-The `routes` entry in `wrangler.jsonc` binds `graph.tryonlinux.com`, which requires
+The `routes` entry in `wrangler.jsonc` binds `par.tryonlinux.com`, which requires
 `tryonlinux.com` to be an active zone on the same Cloudflare account. Remove that
 block to deploy to a `workers.dev` subdomain instead.
 
