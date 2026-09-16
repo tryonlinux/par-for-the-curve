@@ -1,4 +1,4 @@
-# Guess that Graph ⛳
+# Graph Golf ⛳
 
 A golf-style math puzzle. A mystery curve is drawn at the top of the screen and its
 equation sits below it with the numbers blanked out. Fill in the coefficients and

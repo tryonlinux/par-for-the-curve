@@ -1082,7 +1082,7 @@
 
   async function share() {
     const { strokes, toPar } = roundTotals();
-    const text = `Guess that Graph ⛳ ${courseLabel(course.id)}\n${strokes} strokes (${toParStr(toPar)})\n${emojiGrid()}\n${courseUrl(course.id)}`;
+    const text = `Graph Golf ⛳ ${courseLabel(course.id)}\n${strokes} strokes (${toParStr(toPar)})\n${emojiGrid()}\n${courseUrl(course.id)}`;
     if (navigator.share && matchMedia('(pointer: coarse)').matches) {
       try { await navigator.share({ text }); return; } catch { /* fall through to copy */ }
     }

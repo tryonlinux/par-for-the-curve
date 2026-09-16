@@ -1,5 +1,5 @@
 {
-  "name": "Guess that Graph",
+  "name": "Graph Golf",
   "short_name": "Graph Golf",
   "description": "A golf-style math puzzle: read the curve, guess the equation, fewest strokes wins.",
   "start_url": "/",
