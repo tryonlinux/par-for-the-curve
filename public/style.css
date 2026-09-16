@@ -413,6 +413,17 @@ code {
   font-size: 0.8rem;
   color: var(--muted);
 }
+.foot-link {
+  color: inherit;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.foot-link:hover { color: var(--ink); border-bottom-color: var(--line); }
+.foot .gh { flex: none; }
 
 /* ---------- toast ---------- */
 .toast {
