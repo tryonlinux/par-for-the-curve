@@ -410,9 +410,22 @@ code {
   max-width: 920px;
   margin: 0 auto;
   padding-block: 0 28px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px 0;
   text-align: center;
   font-size: 0.8rem;
+  line-height: 1.4;
   color: var(--muted);
+}
+.foot .sep { margin-inline: 0.5em; }
+.foot-group { display: inline-flex; flex-wrap: wrap; justify-content: center; align-items: center; }
+.foot-also { flex-basis: 100%; justify-content: center; }
+@media (max-width: 640px) {
+  .foot-gsep { display: none; }
+  .foot-group { flex-basis: 100%; }
 }
 .foot-link {
   color: inherit;
@@ -420,10 +433,9 @@ code {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  border-bottom: 1px solid transparent;
-  transition: color 0.15s, border-color 0.15s;
+  transition: color 0.15s;
 }
-.foot-link:hover { color: var(--ink); border-bottom-color: var(--line); }
+.foot-link:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
 .foot .gh { flex: none; }
 
 /* ---------- toast ---------- */
